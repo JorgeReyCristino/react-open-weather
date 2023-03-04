@@ -19,18 +19,18 @@ export const mapCurrent = (day, lang) => {
     description: day.weather[0] ? day.weather[0].description : null,
     icon: day.weather[0] && getIcon(day.weather[0].icon),
     temperature: {
-      current: day.temp.toFixed(0),
-      min: undefined, // openweather doesnt provide min/max on current weather
-      max: undefined,
+      current: day.main.temp.toFixed(0),
+      min: day.main.temp_min.toFixed(0),
+      max: day.main.temp_max.toFixed(0),
     },
-    wind: day.wind_speed.toFixed(0),
-    humidity: day.humidity,
+    wind: day.wind.speed.toFixed(0),
+    humidity: day.main.humidity,
   };
 };
 
 export const mapForecast = (forecast, lang) => {
   const mappedForecast = [];
-  for (let i = 0; i < 5; i += 1) {
+  for (let i = 0; i < 40; i += 8) {
     mappedForecast.push({
       date: formatDate(forecast[i].dt, lang),
       description: forecast[i].weather[0]
@@ -38,11 +38,11 @@ export const mapForecast = (forecast, lang) => {
         : null,
       icon: forecast[i].weather[0] && getIcon(forecast[i].weather[0].icon),
       temperature: {
-        min: forecast[i].temp.min.toFixed(0),
-        max: forecast[i].temp.max.toFixed(0),
+        min: forecast[i].main.temp_min.toFixed(0),
+        max: forecast[i].main.temp_max.toFixed(0),
       },
-      wind: forecast[i].wind_speed.toFixed(0),
-      humidity: forecast[i].humidity,
+      wind: forecast[i].wind.speed.toFixed(0),
+      humidity: forecast[i].main.humidity,
     });
   }
   return mappedForecast;
@@ -81,7 +81,7 @@ export const fetchReducer = (state, { type, payload }) => {
 };
 
 const useOpenWeather = (options) => {
-  const endpoint = '//api.openweathermap.org/data/2.5/onecall';
+  const endpoint = '//api.openweathermap.org/data/2.5/forecast';
   const [state, dispatch] = useReducer(fetchReducer, initialState);
   const { data, errorMessage } = state;
   const [isLoading, setIsLoading] = useState(false);
@@ -98,11 +98,9 @@ const useOpenWeather = (options) => {
     setIsLoading(true);
     try {
       const forecastResponse = await axios.get(endpoint, { params });
-      const payload = mapData(
-        forecastResponse.data.daily,
-        forecastResponse.data.current,
-        lang,
-      );
+      const currentDate = forecastResponse.data.list[0];
+      const otherDates = forecastResponse.data.list;
+      const payload = mapData(otherDates, currentDate, lang);
 
       dispatch({
         type: SUCCESS,
