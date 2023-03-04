@@ -1,12 +1,16 @@
 {
   "name": "react-open-weather",
   "bin": {},
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "React Weather component",
   "main": "lib/ReactWeather.js",
   "engines": {
     "node": ">=16.16.0"
   },
+  "files": [
+    "lib/ReactWeather.js",
+    "lib/ReactWeather.js.LICENSE.txt"
+  ],
   "peerDependencies": {
     "react": ">=17.0.1",
     "react-dom": ">=17.0.1"
@@ -64,7 +68,8 @@
     "test": "./node_modules/.bin/jest",
     "test-dev": "./node_modules/.bin/jest --watch",
     "lint": "./node_modules/.bin/eslint ./src/js ;exit 0",
-    "coverage": "./node_modules/.bin/jest --coverage"
+    "coverage": "./node_modules/.bin/jest --coverage",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
