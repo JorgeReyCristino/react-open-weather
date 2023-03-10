@@ -10,7 +10,7 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'ReactWeather',
     umdNamedDefine: true,
-    globalObject: 'this'
+    globalObject: 'this',
   },
   devtool: false,
   module: {
@@ -27,4 +27,5 @@ module.exports = {
     'react-dom': 'react-dom',
   },
   plugins: [],
+  mode: 'production',
 };
