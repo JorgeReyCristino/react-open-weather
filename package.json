@@ -1,7 +1,7 @@
 {
   "name": "react-open-weather",
   "bin": {},
-  "version": "1.4.2",
+  "version": "1.4.4",
   "description": "React Weather component",
   "main": "lib/ReactWeather.js",
   "engines": {
@@ -46,7 +46,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.3.0",  
+    "eslint-plugin-react-hooks": "^4.3.0",
     "file-loader": "^6.2.0",
     "ignore-loader": "^0.1.2",
     "ignore-styles": "^5.0.1",
