@@ -71,7 +71,7 @@
     "test-dev": "./node_modules/.bin/jest --watch",
     "lint": "./node_modules/.bin/eslint ./src/js ;exit 0",
     "coverage": "./node_modules/.bin/jest --coverage",
-    "prepare": "npm run build"
+    "prepare": "pnpm run build"
   },
   "repository": {
     "type": "git",
