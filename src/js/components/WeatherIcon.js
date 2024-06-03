@@ -7,7 +7,13 @@ const StyledSVG = styled.svg`
 `;
 
 // eslint-disable-next-line no-unused-vars
-const WeatherIcon = ({ title, path, size, viewBox, color }) => {
+const WeatherIcon = ({
+  title,
+  path,
+  size = 40,
+  viewBox = '0 -5 35 40',
+  color = '#4BC4F7',
+}) => {
   return (
     <StyledSVG
       color={color}
@@ -29,12 +35,6 @@ WeatherIcon.propTypes = {
   viewBox: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.number,
-};
-
-WeatherIcon.defaultProps = {
-  color: '#4BC4F7',
-  size: 40,
-  viewBox: '0 -5 35 40',
 };
 
 export default WeatherIcon;
